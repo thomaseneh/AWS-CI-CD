@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+  pre_build:
+    commands:
+    - echo retrieve authentication token from AWS
+    - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 217874473810.dkr.ecr.us-east-1.amazonaws.com
+    - echo print repository URI
+    - repositoru_uri=217874473810.dkr.ecr.us-east-1.amazonaws.com/reactform-ecr
+  build:
+    commands:
+    - echo install packages
+    - npm install
+    - npm run build
+    - echo build the docker image
+    - docker build -t reactform-ecr .
+    - tag the built image
+    - docker tag reactform-ecr:latest 217874473810.dkr.ecr.us-east-1.amazonaws.com/reactform-ecr:latest
+  post_build:
+  - echo push the docker image to AWS ecr
+  - docker push 217874473810.dkr.ecr.us-east-1.amazonaws.com/reactform-ecr:latest
+artifacts:
+  files:
+  - 'dist/**'
