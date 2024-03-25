@@ -20,8 +20,8 @@ phases:
     - tag the built image
     - docker tag reactform-ecr:latest 217874473810.dkr.ecr.us-east-1.amazonaws.com/reactform-ecr:latest
   post_build:
-  - echo push the docker image to AWS ecr
-  - docker push 217874473810.dkr.ecr.us-east-1.amazonaws.com/reactform-ecr:latest
+    - echo push the docker image to AWS ecr
+    - docker push 217874473810.dkr.ecr.us-east-1.amazonaws.com/reactform-ecr:latest
 artifacts:
   files:
-  - 'dist/**'
+    - 'dist/**'
