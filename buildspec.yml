@@ -17,7 +17,7 @@ phases:
     - npm run build
     - echo build the docker image
     - docker build -t reactform-ecr .
-    - tag the built image
+    - echo tagging the built image
     - docker tag reactform-ecr:latest 217874473810.dkr.ecr.us-east-1.amazonaws.com/reactform-ecr:latest
   post_build:
     commands:
