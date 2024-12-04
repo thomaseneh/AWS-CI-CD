@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: thomasenehawscicd 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: thomasenehawscicd
+  template:
+    metadata:
+      labels:
+        app: thomasenehawscicd 
+    spec:
+      containers:
+        - name: thomasenehawscicd 
+          image: toprefunderimage.azurecr.io/thomasenehawscicd
+          ports:
+          - containerPort: 5173
